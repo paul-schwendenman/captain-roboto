@@ -9,7 +9,7 @@ describe('RPS Bot Tests', function () {
     beforeEach(function () {
     });
 
-    it('should pass', function() {
+    it('returns a helpful message when no argument is passed', function() {
         var message = {
             type: 'message',
             text: '!rps'
