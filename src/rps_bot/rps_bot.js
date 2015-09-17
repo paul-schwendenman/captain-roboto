@@ -5,11 +5,14 @@ var determinator = require(__base + 'src/rps_bot/rps_determinator');
 
 module.exports = {
     handleMessage: handleMessage,
-    playRPS: playRPS
+    playRPS: playRPS,
+    generateChoice: generateChoice,
+    formatResponse: formatResponse
 };
 
 
-function handleMessage(message) {
+function handleMessage(message, randomFn) {
+
     var tokens = message.text.split(' ', 2);
     if (tokens.length > 1) {
         var argument = tokens[1],
@@ -17,25 +20,28 @@ function handleMessage(message) {
         if (found < 0) {
             return defs.wrongArgumentMessage;
         } else {
-            return playRPS(argument);
+            var opponent = generateChoice(randomFn);
+
+            return playRPS(argument, opponent);
         }
     }
     return defs.noArgumentMessage;
 }
 
-function playRPS(player) {
-    var opponent = generateChoice();
+function playRPS(player, opponent) {
     var result = determinator.computeResult(player, opponent);
-    return formatResponse(result, player, opponent);
+    return formatResponse(result, opponent);
 }
 
-function generateChoice() {
+function generateChoice(randomFn) {
+    randomFn = randomFn || Math.random;
+
     var options = ['rock', 'paper', 'scissors'];
 
-    return options[Math.floor((Math.random() * options.length))];
+    return options[Math.floor((randomFn() * options.length))];
 }
 
-function formatResponse(result, player, opponent) {
+function formatResponse(result, opponent) {
 
     var choice = 'Picked ' + opponent + '.';
     var outcome = '';
