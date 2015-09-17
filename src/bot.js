@@ -2,6 +2,9 @@ var Slack = require('slack-client');
 
 var apiToken = "xoxb-10812967652-XdB90yvmNLOeCkRxumZDCr28";
 
+var rps_bot = require('./src/rps_bot');
+
+
 module.exports = {
     run: run
 };
@@ -38,14 +41,13 @@ function run() {
 
     slack.on('message', function(message) {
         var channel = slack.getChannelGroupOrDMByID(message.channel);
-        var user = slack.getUserByID(message.user);
 
         if (message.type === 'message') {
-            if (user) {
-                console.log(channel.name + ':' + user.name + ':' + message.text);
 
-                // send a message back
-                channel.postMessage({ token: apiToken, channel: message.channel, text: 'I am Roboto' });
+            var response = rps_bot.handleMessage(message);
+
+            if (response) {
+                channel.postMessage({ token: apiToken, channel: message.channel, text: response });
             }
         }
     });

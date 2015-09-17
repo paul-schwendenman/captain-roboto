@@ -15,6 +15,7 @@
     "serve-favicon": "~2.3.0",
     "slack-client": "latest",
     "mocha": "latest",
-    "chai": "latest"
+    "chai": "latest",
+    "lodash": "latest"
   }
 }
