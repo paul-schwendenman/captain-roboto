@@ -1,17 +1,11 @@
 'use strict';
 
+var defs = require(__base + 'src/rps_bot/rps_bot_defs');
+var determinator = require(__base + 'src/rps_bot/rps_determinator');
+
 module.exports = {
     handleMessage: handleMessage,
-    playRPS: playRPS,
-    computeResult: computeResult,
-    WIN: 1,
-    TIE: 0,
-    LOSS: -1,
-    noArgumentMessage: 'Hey!  Please add an argument!  Rock, paper, or scissors?',
-    wrongArgumentMessage: 'ROCK. PAPER. OR SCISSORS.  NOT THAT HARD.',
-    youWinMessage: 'YOU WIN!',
-    youLoseMessage: 'YOU LOSE.  HAHAHAhahahahahhaha!!!',
-    youTieMessage: 'YOU TIE.'
+    playRPS: playRPS
 };
 
 
@@ -21,60 +15,36 @@ function handleMessage(message) {
         var argument = tokens[1],
             found = ['rock', 'paper', 'scissors'].indexOf(argument.toLowerCase());
         if (found < 0) {
-            return this.wrongArgumentMessage;
+            return defs.wrongArgumentMessage;
         } else {
             return playRPS(argument);
         }
     }
-    return this.noArgumentMessage;
+    return defs.noArgumentMessage;
 }
 
 function playRPS(player) {
     var opponent = generateChoice();
-    var result = computeResult(player, opponent);
+    var result = determinator.computeResult(player, opponent);
     return formatResponse(result, player, opponent);
 }
 
-function computeResult(player, opponent) {
-    var matrix = {
-        'rock': {
-            'rock': 0,
-            'paper': -1,
-            'scissors': 1
-        },
-        'paper': {
-            'rock': 1,
-            'paper': 0,
-            'scissors': -1
-        },
-        'scissors': {
-            'rock': -1,
-            'paper': 1,
-            'scissors': 0
-        }
-    };
-
-    return matrix[player][opponent];
-}
-
 function generateChoice() {
+    var options = ['rock', 'paper', 'scissors'];
 
-    return 'rock';
+    return options[Math.floor((Math.random() * options.length))];
 }
 
 function formatResponse(result, player, opponent) {
 
-    var outcome = this.youLoseMessage;
+    var choice = 'Picked ' + opponent + '.';
+    var outcome = '';
 
-    //switch (result) {
-    //    case
-    //}
+    switch (result) {
+        case defs.WIN: outcome = defs.youWinMessage; break;
+        case defs.TIE: outcome = defs.youTieMessage; break;
+        case defs.LOSS: outcome = defs.youLoseMessage; break;
+    }
 
-
-    //youWinMessage: 'YOU WIN!',
-    //    youLoseMessage: 'YOU LOSE.  HAHAHAhahahahahhaha!!!',
-    //    youTieMessage: 'YOU TIE.'
-
-
-    return outcome;
+    return choice + ' ' + outcome;
 }
