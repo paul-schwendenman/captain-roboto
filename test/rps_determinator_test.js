@@ -1,5 +1,5 @@
 // set base (root) directory
-global.__base = __dirname + '/../../';
+global.__base = __dirname + '/../';
 
 var defs    = require(__base + 'src/rps_bot/rps_bot_defs');
 var determinator = require(__base + 'src/rps_bot/rps_determinator');
