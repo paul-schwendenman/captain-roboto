@@ -1,18 +1,16 @@
 var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
+
+var Slack = require('slack-client');
+var apiToken = "xoxb-10812967652-XdB90yvmNLOeCkRxumZDCr28";
 
 // set base (root) directory
 global.__base = __dirname + '/';
 
 var app = express();
-var bot = require('./src/bot');
-
-// uncomment after placing your favicon in /public
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+var bot = require(__base + 'src/bot');
 
 // run bot
-bot.run();
+var slack = new Slack(apiToken, true, true);
+bot.run(apiToken, slack);
 
 module.exports = app;

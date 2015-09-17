@@ -21,7 +21,6 @@ describe("Router", function() {
 
     it("returns undefined for a handler if the route is undefined", function() {
         var handler = router.getHandler('!notACommand', mockRouteTable);
-        console.log(handler);
         chai.assert(handler === undefined);
     });
 
