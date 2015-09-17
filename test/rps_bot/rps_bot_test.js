@@ -11,12 +11,21 @@ describe('RPS Bot Tests', function () {
 
     it('returns a helpful message when no argument is passed', function() {
         var message = {
-            type: 'message',
             text: '!rps'
         };
 
         var response = rps_bot.handleMessage(message);
 
-        expect(response).to.equal(rps_bot.helpfulMessage);
+        expect(response).to.equal(rps_bot.noArgumentMessage);
+    });
+
+    it('returns an angry, snarky message when a wrong argument is passed', function() {
+        var message = {
+            text: '!rps banana'
+        };
+
+        var response = rps_bot.handleMessage(message);
+
+        expect(response).to.equal(rps_bot.wrongArgumentMessage);
     });
 });
