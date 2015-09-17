@@ -2,6 +2,9 @@ var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
 
+// set base (root) directory
+global.__base = __dirname + '/';
+
 var app = express();
 var bot = require('./src/bot');
 
