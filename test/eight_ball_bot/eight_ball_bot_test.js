@@ -1,10 +1,9 @@
 'use strict';
 
-// set base (root) directory
-global.__base = __dirname + '/../';
+require('../test.setup');
 
-var eight_ball_bot = require(__base + 'src/eight_ball_bot/eight_ball_bot');
-var defs = require(__base + 'src/eight_ball_bot/eight_ball_bot_defs');
+var eight_ball_bot = require(baseDir() + 'src/eight_ball_bot/eight_ball_bot');
+var defs = require(baseDir() + 'src/eight_ball_bot/eight_ball_bot_defs');
 var expect = require('chai').expect;
 
 describe('Eight Ball Bot', function() {
