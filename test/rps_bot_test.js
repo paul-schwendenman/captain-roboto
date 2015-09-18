@@ -72,6 +72,17 @@ describe('RPS Bot Tests', function () {
         expect(response).to.have.string(defs.youTieMessage);
         expect(response.toLowerCase()).to.have.string('rock');
     });
+
+    it('returns a happy message when the user types paper in mixed case vs rock', function() {
+        var message = {
+            text: "!rps PaPeR"
+        };
+
+        var response = rps_bot.handleMessage(message, fakeRandom('rock'));
+
+        expect(response).to.have.string(defs.youWinMessage);
+        expect(response.toLowerCase()).to.have.string('rock');
+    });
 });
 
 

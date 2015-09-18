@@ -15,8 +15,8 @@ function handleMessage(message, randomFn) {
 
     var tokens = message.text.split(' ', 2);
     if (tokens.length > 1) {
-        var argument = tokens[1],
-            found = ['rock', 'paper', 'scissors'].indexOf(argument.toLowerCase());
+        var argument = tokens[1].toLowerCase(),
+            found = ['rock', 'paper', 'scissors'].indexOf(argument);
         if (found < 0) {
             return defs.wrongArgumentMessage;
         } else {

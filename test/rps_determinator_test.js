@@ -1,5 +1,3 @@
-// set base (root) directory
-
 require('../test.setup');
 var defs    = require(baseDir() + 'src/rps_bot/rps_bot_defs');
 var determinator = require(baseDir() + 'src/rps_bot/rps_determinator');
