@@ -1,5 +1,7 @@
+
+require('../test.setup');
 var chai = require("chai");
-var router = require("../src/router");
+var router = require(baseDir() + "src/router/router");
 
 describe("Router", function() {
 

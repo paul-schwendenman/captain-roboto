@@ -1,7 +1,7 @@
 var channelName = 'pillar-academy-test';
 
-var router = require(__base + 'src/router');
-var routes = require(__base + 'src/routes');
+var router = require(__base + 'src/router/router');
+var routes = require(__base + 'src/router/routes');
 
 module.exports = {
     run: run

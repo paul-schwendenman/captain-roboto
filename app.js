@@ -6,6 +6,10 @@ var apiToken = "xoxb-10812967652-XdB90yvmNLOeCkRxumZDCr28";
 // set base (root) directory
 global.__base = __dirname + '/';
 
+global.baseDir = function() {
+    return global.__base;
+}
+
 var app = express();
 var bot = require(__base + 'src/bot');
 

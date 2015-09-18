@@ -1,6 +1,7 @@
 'use strict';
 
-var dice_bot = require('../src/dice_bot');
+require('../test.setup');
+var dice_bot = require(baseDir() + 'src/dice_bot/dice_bot');
 var chai = require('chai');
 
 describe('Dice Bot', function() {
