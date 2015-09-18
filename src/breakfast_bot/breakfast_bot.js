@@ -14,6 +14,5 @@ function handleMessage(message, randomFn) {
 }
 
 function generateResponse(options, randomFn) {
-    return response_picker_bot.generateResponse(options, randomFn);
+    return response_picker_bot.generateResponse(options, randomFn) + '!';
 }
-

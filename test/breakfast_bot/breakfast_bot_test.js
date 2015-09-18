@@ -20,9 +20,8 @@ describe('Breakfast Bot', function() {
 
         var response = breakfast_bot.handleMessage(message, fakeRandomFn);
 
-        expect(response).to.equal(defs.options[0]);
+        expect(response).to.equal(defs.options[0] + '!');
 
     });
 
 });
-
