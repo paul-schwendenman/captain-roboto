@@ -4,7 +4,7 @@ var defs = require(__base + 'src/eight_ball_bot/eight_ball_bot_defs');
 
 module.exports = {
     handleMessage: handleMessage,
-    generateRsponse: generateResponse
+    generateResponse: generateResponse
 };
 
 
@@ -21,8 +21,6 @@ function handleMessage(message, randomFn) {
 function generateResponse(randomFn) {
     randomFn = randomFn || Math.random;
 
-    var options = ['rock', 'paper', 'scissors'];
-
-    return options[Math.floor((randomFn() * options.length))];
+    return defs.options[Math.floor((randomFn() * defs.options.length))];
 }
 
