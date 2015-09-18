@@ -1,8 +1,8 @@
 // set base (root) directory
-global.__base = __dirname + '/../../';
 
-var defs    = require(__base + 'src/rps_bot/rps_bot_defs');
-var determinator = require(__base + 'src/rps_bot/rps_determinator');
+require('../test.setup');
+var defs    = require(baseDir() + 'src/rps_bot/rps_bot_defs');
+var determinator = require(baseDir() + 'src/rps_bot/rps_determinator');
 var expect  = require('chai').expect;
 
 describe('RPS Determinator Tests', function() {

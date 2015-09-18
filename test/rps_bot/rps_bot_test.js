@@ -1,11 +1,8 @@
 'use strict';
 
-// set base (root) directory
-global.__base = __dirname + '/../../';
-
-
-var rps_bot = require(__base + 'src/rps_bot/rps_bot');
-var defs    = require(__base + 'src/rps_bot/rps_bot_defs');
+require('../test.setup');
+var rps_bot = require(baseDir() + 'src/rps_bot/rps_bot');
+var defs    = require(baseDir() + 'src/rps_bot/rps_bot_defs');
 var expect  = require('chai').expect;
 
 var fakeRandom = function (choice) {

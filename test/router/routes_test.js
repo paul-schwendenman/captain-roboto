@@ -1,7 +1,7 @@
-global.__base = __dirname + '/../';
 
+require('../test.setup');
 var chai = require("chai");
-var routes = require("../src/routes");
+var routes = require(baseDir() + "src/router/routes");
 
 describe('Routes Table', function() {
 
