@@ -2,6 +2,7 @@
 
 var defs = require(__base + 'src/rps_bot/rps_bot_defs');
 var determinator = require(__base + 'src/rps_bot/rps_determinator');
+var responsePicker = require(__base + 'src/response_picker_bot/response_picker_bot');
 
 module.exports = {
     handleMessage: handleMessage,
@@ -34,11 +35,8 @@ function playRPS(player, opponent) {
 }
 
 function generateChoice(randomFn) {
-    randomFn = randomFn || Math.random;
-
     var options = ['rock', 'paper', 'scissors'];
-
-    return options[Math.floor((randomFn() * options.length))];
+    return responsePicker.generateResponse(options, randomFn);
 }
 
 function formatResponse(result, opponent) {
