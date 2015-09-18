@@ -1,7 +1,7 @@
 var express = require('express');
 
 var Slack = require('slack-client');
-var apiToken = "xoxb-10812967652-XdB90yvmNLOeCkRxumZDCr28";
+var apiToken = process.argv[2];
 
 // set base (root) directory
 global.__base = __dirname + '/';

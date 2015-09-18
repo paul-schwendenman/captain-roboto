@@ -11,6 +11,7 @@
     "slack-client": "latest",
     "mocha": "latest",
     "chai": "latest",
-    "lodash": "latest"
+    "lodash": "latest",
+    "q": "latest"
   }
 }

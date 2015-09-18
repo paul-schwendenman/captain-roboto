@@ -25,12 +25,37 @@ function run(apiToken, slack) {
 
             var handler = router.getHandler(command, routes.routeTable);
             if (handler) {
-                var response = handler(message);
-                channel.postMessage({
-                    as_user: true,
-                    token: apiToken,
-                    text: response
-                });
+
+                //handler(message)
+                //    .then(function (response) {
+                //        channel.postMessage({
+                //            as_user: true,
+                //            token: apiToken,
+                //            text: response
+                //        });
+                //    });
+
+                // hack alert
+                var promise = handler(message);
+
+                if (promise.then) {
+                    promise.then(function (response) {
+                        channel.postMessage({
+                            as_user: true,
+                            token: apiToken,
+                            text: response
+                        });
+                    });
+                }
+                else {
+                    var response = promise; // promise is really a string here
+
+                    channel.postMessage({
+                        as_user: true,
+                        token: apiToken,
+                        text: response
+                    });
+                }
             }
         }
     });
