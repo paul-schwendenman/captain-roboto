@@ -12,14 +12,25 @@ function handleMessage() {
 
     var deferred = q.defer();
 
-    http.get('http://imgs.xkcd.com/comics/secretary_part_1.png', function (resp) {
+    getMostRecentComicJson()
+        .then(function (response) {
 
-        deferred.resolve('http://imgs.xkcd.com/comics/secretary_part_1.png');
-    });
+            deferred.resolve(response.img);
+        });
 
     return deferred.promise;
 }
 
 function getMostRecentComicJson() {
 
+    var deferred = q.defer();
+
+    http.get('http://xkcd.com/info.0.json', function (response) {
+        response.on('data', function (body) {
+            var json = JSON.parse(body);
+            deferred.resolve(json);
+        })
+    });
+
+    return deferred.promise;
 }
